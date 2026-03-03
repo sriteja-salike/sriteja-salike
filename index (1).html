@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sriteja Salike — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #12121a;
+      --bg2:      #181824;
+      --surface:  #21213a;
+      --surface2: #2a2a48;
+      --gold:       #c8a96e;
+      --gold-light: #e8c98e;
+      --gold-dim:   #8a6f3e;
+      --text:      #f0ece0;
+      --text-dim:  #a8a49a;
+      --text-muted:#5a5650;
+      --border: rgba(200, 169, 110, 0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      backdrop-filter: blur(20px);
+      background: rgba(18,18,26,0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; color: var(--gold); }
+    .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.18em; color: var(--text-dim);
+      text-decoration: none; text-transform: uppercase; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 0 4rem; position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 5rem; max-width: 1100px; width: 100%; z-index: 1;
+    }
+    .hero-text { flex: 1; text-align: center; }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.8rem, 7vw, 7rem);
+      line-height: 0.95; letter-spacing: 0.04em; color: var(--text);
+      opacity: 0; animation: fadeUp 0.9s 0.2s forwards;
+    }
+    .hero-name span { color: var(--gold); }
+    .hero-tagline {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-style: italic; line-height: 1.6; color: var(--text-dim);
+      max-width: 480px; margin-left: auto; margin-right: auto;
+      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-cta {
+      margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
+    }
+    .btn-primary {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.85rem 2.2rem; background: var(--gold); color: var(--bg);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.85rem 2.2rem; border: 1px solid var(--gold-dim); color: var(--gold);
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+    /* HERO PHOTO */
+    .hero-photo { flex-shrink: 0; opacity: 0; animation: fadeIn 1s 0.4s forwards; }
+    .hero-photo-circle {
+      width: 260px; height: 260px; border-radius: 50%;
+      border: 2px solid var(--gold-dim);
+      box-shadow: 0 0 40px rgba(200,169,110,0.15), 0 0 80px rgba(200,169,110,0.07);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+      background: var(--surface);
+    }
+    .hero-photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder {
+      font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+      color: var(--gold-dim); letter-spacing: 0.1em; user-select: none;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.22em; color: var(--text-muted); text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.8rem;
+      opacity: 0; animation: fadeUp 1s 1s forwards;
+    }
+    .hero-scroll::before, .hero-scroll::after {
+      content: ''; width: 30px; height: 1px; background: var(--text-muted);
+    }
+
+    /* SECTION SHARED */
+    .section-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 4rem; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: 0.06em; color: var(--text);
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ABOUT */
+    #about { padding: 8rem 4rem; background: var(--bg2); }
+    .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: center; }
+    .about-bio p { font-size: 1.15rem; line-height: 1.85; color: var(--text-dim); margin-bottom: 1.4rem; }
+    .about-bio p:last-child { margin-bottom: 0; }
+    .edu-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; }
+    .edu-card-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem;
+    }
+    .edu-degree { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.3rem; }
+    .edu-school { font-size: 1rem; color: var(--gold); margin-bottom: 0.25rem; }
+    .edu-date { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; }
+    .edu-divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
+
+    /* EXPERIENCE */
+    #experience { padding: 8rem 4rem; background: var(--bg); }
+    .experience-inner { max-width: 1100px; margin: 0 auto; }
+    .timeline { position: relative; padding-left: 3rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 4rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -3rem; top: 0.4rem;
+      width: 9px; height: 9px; background: var(--gold);
+      transform: translateX(-4px) rotate(45deg);
+    }
+    .timeline-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.15em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .timeline-role { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.25rem; }
+    .timeline-company { font-size: 1rem; color: var(--gold); margin-bottom: 1rem; }
+    .timeline-desc { font-size: 1.1rem; line-height: 1.75; color: var(--text-dim); }
+    .timeline-desc li { margin-bottom: 0.5rem; margin-left: 1.2rem; }
+
+    /* SKILLS */
+    #skills { padding: 8rem 4rem; background: var(--bg2); }
+    .skills-inner { max-width: 1100px; margin: 0 auto; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 2rem;
+      position: relative; overflow: hidden; transition: border-color 0.3s, background 0.3s;
+    }
+    .skill-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 100%; height: 2px;
+      background: var(--gold); transition: right 0.4s ease;
+    }
+    .skill-card:hover::after { right: 0; }
+    .skill-card:hover { border-color: var(--gold-dim); background: var(--surface2); }
+    .skill-card-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
+    .skill-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.8rem; }
+    .skill-list { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; line-height: 1.9; letter-spacing: 0.05em; color: var(--text-dim); }
+
+    /* PROJECTS */
+    #projects { padding: 8rem 4rem; background: var(--bg); }
+    .projects-inner { max-width: 1100px; margin: 0 auto; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+    }
+    .project-card::before {
+      content: attr(data-num); position: absolute; top: -0.5rem; right: 1rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: rgba(200,169,110,0.05);
+      line-height: 1; pointer-events: none;
+    }
+    .project-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+    .project-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.8rem;
+    }
+    .project-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.8rem; }
+    .project-desc { font-size: 1.05rem; line-height: 1.7; color: var(--text-dim); margin-bottom: 1.5rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em;
+      padding: 0.3rem 0.7rem; border: 1px solid var(--border); color: var(--text-dim);
+    }
+
+    /* PUBLICATIONS */
+    #publications { padding: 8rem 4rem; background: var(--bg2); }
+    .publications-inner { max-width: 1100px; margin: 0 auto; }
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .pub-card {
+      background: var(--surface); border: 1px solid rgba(200,169,110,0.25);
+      padding: 2rem 2.5rem; position: relative;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .pub-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .pub-card:hover { border-color: var(--gold-dim); background: var(--surface2); transform: translateX(6px); }
+    .pub-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+    .pub-journal {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim);
+    }
+    .pub-doi {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border: 1px solid var(--gold-dim); padding: 0.25rem 0.65rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pub-doi:hover { background: var(--gold); color: var(--bg); }
+    .pub-title {
+      font-family: 'Crimson Pro', Georgia, serif; font-size: 1.2rem;
+      font-weight: 400; color: var(--text); margin-bottom: 0.75rem; line-height: 1.4;
+    }
+    .pub-desc { font-size: 1.05rem; line-height: 1.7; color: var(--text-dim); margin-bottom: 1rem; }
+    .pub-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* CONTACT */
+    #contact { padding: 8rem 4rem; background: var(--bg); text-align: center; }
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+    .contact-heading {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem);
+      letter-spacing: 0.06em; line-height: 0.95; margin-bottom: 1.5rem;
+    }
+    .contact-heading span { color: var(--gold); }
+    .contact-sub { font-size: 1.1rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 3rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; text-decoration: none; color: var(--gold);
+      border: 1px solid var(--gold-dim); padding: 1rem 1.8rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .contact-link:hover { background: var(--gold); color: var(--bg); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--bg2);
+    }
+    .footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; color: var(--text-muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      #hero { padding: 6rem 2rem 4rem; }
+      .hero-inner { flex-direction: column-reverse; gap: 2.5rem; }
+      .hero-photo-circle { width: 200px; height: 200px; }
+      #about { padding: 5rem 2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      #experience, #skills, #projects, #publications, #contact { padding: 5rem 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">SS</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-name">Sriteja<br><span>Salike</span></h1>
+        <p class="hero-tagline">
+          Turning complex data into decisions — at the intersection of machine learning, supply chain, and engineering.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">View Work</a>
+          <a href="#contact" class="btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <!--
+          TO ADD YOUR PHOTO: replace the div below with:
+          <img src="photo.jpg" alt="Sriteja Salike" />
+          and put photo.jpg in the same folder as this file.
+        -->
+        <div class="hero-photo-circle">
+          <div class="photo-placeholder">SS</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-bio">
+        <div class="section-header reveal">
+          <h2 class="section-title">About</h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="reveal">MS Industrial Engineering candidate at Purdue University, specializing in data science and supply chain analytics. I bridge the gap between raw operational data and strategic decisions — building pipelines, models, and dashboards that drive real impact.</p>
+        <p class="reveal">My work spans demand forecasting, supplier quality analytics, last-mile delivery optimization, and ML-powered process improvement. I've shipped data solutions at Amazon, Tesla, and FedEx that reduced costs, improved quality, and accelerated delivery.</p>
+        <p class="reveal">I'm passionate about turning messy, real-world data into clean insight — and I believe the best models are the ones that actually get used.</p>
+      </div>
+      <div class="reveal">
+        <div class="edu-card">
+          <div class="edu-card-label">Education</div>
+          <div class="edu-degree">MS Industrial Engineering</div>
+          <div class="edu-school">Purdue University</div>
+          <div class="edu-date">2023 — 2025</div>
+          <div class="edu-divider"></div>
+          <div class="edu-degree">BE Mechanical Engineering</div>
+          <div class="edu-school">CVR College of Engineering</div>
+          <div class="edu-date">2017 — 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="experience-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title">Experience</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">Oct 2021 — Dec 2022</div>
+          <div class="timeline-role">Data Quality Analyst</div>
+          <div class="timeline-company">Amazon · India</div>
+          <ul class="timeline-desc">
+            <li>Engineered Python-based defect detection models reducing misrouted packages by 25% and improving on-time delivery across 12 sort centers.</li>
+            <li>Built automated Power BI dashboards replacing 15+ manual Excel reports, saving 10+ hours per week across operations teams.</li>
+            <li>Designed SQL-driven tracking system for 50K+ daily shipments, cutting false defect flags by 40% through Pareto-based root cause analysis.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">Jan 2024 — Jun 2024</div>
+          <div class="timeline-role">Supply Chain Analyst (Intern)</div>
+          <div class="timeline-company">Tesla · Palo Alto, CA</div>
+          <ul class="timeline-desc">
+            <li>Led supplier qualification for 8 critical battery components, applying PPAP, Control Plans, and Cp/Cpk analysis to ensure process capability.</li>
+            <li>Reduced dimensional variation by 20% using SPC and MSA on Model Y battery pack assembly processes.</li>
+            <li>Managed cross-functional PPAP submissions with 15+ global suppliers using Tesla's WARP platform.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">Aug 2025 — Dec 2025</div>
+          <div class="timeline-role">Data Science Consultant</div>
+          <div class="timeline-company">FedEx via Purdue Data Mine · Indianapolis, IN</div>
+          <ul class="timeline-desc">
+            <li>Built discrete-event simulation models in FlexSim to optimize package flow at FedEx distribution centers.</li>
+            <li>Developed Python analytics pipeline identifying bottleneck operations, informing staffing and routing decisions.</li>
+            <li>Delivered executive-ready Tableau dashboards tracking key throughput and efficiency KPIs.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="skills-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">⌨️</div>
+          <p class="skill-card-title">Programming</p>
+          <p class="skill-list">Python · SQL · R<br>Pandas · NumPy · Scikit-learn<br>TensorFlow · PyTorch<br>PySpark</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🔧</div>
+          <p class="skill-card-title">Data Engineering</p>
+          <p class="skill-list">Apache Airflow · AWS<br>Docker · PostgreSQL<br>SQL Server · Snowflake<br>ETL · ELT Pipelines</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">📊</div>
+          <p class="skill-card-title">Visualization</p>
+          <p class="skill-list">Power BI · Tableau<br>Matplotlib · Seaborn<br>Plotly · Excel Dashboards</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">📐</div>
+          <p class="skill-card-title">Statistics & Quality</p>
+          <p class="skill-list">SPC · Pareto · RCA<br>ANOVA · A/B Testing<br>Hypothesis Testing<br>Six Sigma · MSA · 8D</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🔗</div>
+          <p class="skill-card-title">Supply Chain</p>
+          <p class="skill-list">Supplier Qualification · PPAP<br>Cp/Cpk · Control Plans<br>Last-Mile Delivery Analytics<br>Discrete-Event Simulation</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🛠️</div>
+          <p class="skill-card-title">Tools & Platforms</p>
+          <p class="skill-list">GitHub · FlexSim · Minitab<br>MS Office · AutoCAD · CATIA<br>Tesla WARP · Power Automate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="projects-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal" data-num="01">
+          <p class="project-badge">Data Engineering · Analytics</p>
+          <h3 class="project-title">Netflix Content Analytics</h3>
+          <p class="project-desc">End-to-end ELT pipeline — raw extraction in Python, structured transformation in SQL Server, and an interactive Power BI dashboard visualizing genre trends, regional production hubs, and catalog distribution.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">SQL Server</span>
+            <span class="stack-pill">Power BI</span>
+            <span class="stack-pill">ELT</span>
+          </div>
+        </div>
+        <div class="project-card reveal" data-num="02">
+          <p class="project-badge">Data Engineering · MLOps</p>
+          <h3 class="project-title">Automated Weather Pipeline</h3>
+          <p class="project-desc">Daily ETL pipeline using Apache Airflow and Astro SDK ingesting meteorological data from Open-Meteo API. Containerized PostgreSQL warehouse via Docker Compose with idempotent SQL hooks preventing duplicate records.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Airflow</span>
+            <span class="stack-pill">Docker</span>
+            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Astro SDK</span>
+          </div>
+        </div>
+        <div class="project-card reveal" data-num="03">
+          <p class="project-badge">Coming Soon · ML · Supply Chain</p>
+          <h3 class="project-title">More In Progress</h3>
+          <p class="project-desc">Currently building demand forecasting models, supply chain optimization tools, and last-mile delivery prediction systems. Check back soon.</p>
+          <div class="project-stack">
+            <span class="stack-pill">ML</span>
+            <span class="stack-pill">Supply Chain</span>
+            <span class="stack-pill">Optimization</span>
+            <span class="stack-pill">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="publications-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title">Publications</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="pub-list">
+
+        <div class="pub-card reveal">
+          <div class="pub-meta">
+            <span class="pub-journal">Machine Learning with Applications</span>
+            <a href="https://doi.org/10.1016/j.mlwa.2021.100099" target="_blank" class="pub-doi">DOI ↗</a>
+          </div>
+          <h3 class="pub-title">Machine learning and statistical approach in modeling and optimization of surface roughness in wire electrical discharge machining</h3>
+          <p class="pub-desc">Applied NN, SVM, and Genetic Algorithm to predict and optimize surface roughness in WEDM of Inconel 718. SVM achieved near-perfect accuracy (R = 0.99999, MAPE = 0.035%) and GA delivered a 61% improvement in surface finish over experimental results.</p>
+          <div class="pub-tags">
+            <span class="stack-pill">NN</span>
+            <span class="stack-pill">SVM</span>
+            <span class="stack-pill">Genetic Algorithm</span>
+            <span class="stack-pill">WEDM</span>
+            <span class="stack-pill">RSM</span>
+          </div>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-meta">
+            <span class="pub-journal">Materials and Manufacturing Processes</span>
+            <a href="https://doi.org/10.1080/10426914.2022.2030875" target="_blank" class="pub-doi">DOI ↗</a>
+          </div>
+          <h3 class="pub-title">Estimation of machinability performance in wire-EDM on titanium alloy using neural networks</h3>
+          <p class="pub-desc">Built a multi-output NN model (8-5-5-4 architecture) to simultaneously predict surface roughness, cutting speed, kerf width, and MRR in WEDM of Ti-6Al-4V alloy, achieving a correlation of R = 0.9995 across all four outputs.</p>
+          <div class="pub-tags">
+            <span class="stack-pill">NN</span>
+            <span class="stack-pill">WEDM</span>
+            <span class="stack-pill">ANOVA</span>
+            <span class="stack-pill">MATLAB</span>
+          </div>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-meta">
+            <span class="pub-journal">Materials Today: Proceedings</span>
+            <a href="https://doi.org/10.1016/j.matpr.2020.06.581" target="_blank" class="pub-doi">DOI ↗</a>
+          </div>
+          <h3 class="pub-title">Modeling of tool wear in machining of AISI 52100 steel using artificial neural networks</h3>
+          <p class="pub-desc">Developed a NN model to predict cutting tool flank wear across three lubrication environments — dry, wet, and MQL machining — with R-values close to 1 in all conditions, establishing MQL as the optimal setup for minimizing tool wear.</p>
+          <div class="pub-tags">
+            <span class="stack-pill">NN</span>
+            <span class="stack-pill">Tool Wear</span>
+            <span class="stack-pill">Hard Turning</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-header reveal" style="justify-content:center; margin-bottom:2rem;">
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <h2 class="contact-heading reveal">Let's Build<br><span>Something.</span></h2>
+      <p class="contact-sub reveal">Open to Data Scientist, Data Analyst, and ML Engineering roles. Let's connect.</p>
+      <div class="contact-links reveal">
+        <a href="https://www.linkedin.com/in/sritejasalike/" target="_blank" class="contact-link">in LinkedIn</a>
+        <a href="https://github.com/sriteja-salike" target="_blank" class="contact-link">⌥ GitHub</a>
+        <a href="https://x.com/sriteja_salike" target="_blank" class="contact-link">𝕏 Twitter</a>
+        <a href="https://scholar.google.com/citations?hl=en&user=zBdBGwIAAAAJ" target="_blank" class="contact-link">Scholar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">&copy; 2025 Sriteja Salike</span>
+    <span class="footer-copy">Built with purpose.</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
