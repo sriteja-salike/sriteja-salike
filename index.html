@@ -332,9 +332,8 @@
           <h2 class="section-title">About</h2>
           <div class="section-line"></div>
         </div>
-        <p class="reveal">Results-driven analytical professional who loves to bridge the gap between raw operational data and strategic decisions — building pipelines, models, and dashboards that drive real impact.</p>
-        <p class="reveal">My work spans demand forecasting, supplier quality analytics, last-mile delivery optimization, and ML-powered process improvement. I've shipped data solutions at Amazon, Tesla, FedEx and Veerabhadra Agencies that reduced costs, improved quality, and accelerated impact.</p>
-        <p class="reveal">Passionate about utilizing predictive analytics, automated workflows and AI tools to solve intricate operational challenges and scale business performance in fast-paced, technology-driven environments.</p>
+        <p class="reveal">Analytics professional who turns messy operational data into clear, confident decisions.</p>
+        <p class="reveal">I work where forecasting, simulation, and data engineering meet — building the pipelines, models, and dashboards that help teams see risk early and act on it. Lately, I've been exploring how AI agents can support planners through human-in-the-loop decision workflows.</p>
       </div>
       <div class="reveal">
         <div class="edu-card">
@@ -439,32 +438,47 @@
         <div class="skill-card reveal">
           <div class="skill-card-icon">⌨️</div>
           <p class="skill-card-title">Programming</p>
-          <p class="skill-list">Python · SQL · R · MATLAB<br>Pandas · NumPy · Scikit-learn<br>SciPy · SimPy · PySpark<br>TensorFlow · PyTorch</p>
+          <p class="skill-list">Python · SQL · R · MATLAB<br>Pandas · NumPy<br>SciPy · SimPy</p>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">🔧</div>
           <p class="skill-card-title">Data Engineering</p>
-          <p class="skill-list">Apache Airflow · Kafka · AWS<br>Azure · Docker · Databricks<br>Redshift · S3 · BigQuery<br>PostgreSQL · MySQL · SQL Server<br>Snowflake · ETL · ELT · Astro SDK</p>
+          <p class="skill-list">Apache Airflow · Astro SDK<br>Kafka · PySpark<br>ETL · ELT · Docker<br>FastAPI · REST APIs · CI/CD</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">☁️</div>
+          <p class="skill-card-title">Cloud & Databases</p>
+          <p class="skill-list">AWS · S3 · Redshift<br>Azure · Databricks<br>BigQuery · Snowflake<br>PostgreSQL · MySQL · SQL Server</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🤖</div>
+          <p class="skill-card-title">AI & Machine Learning</p>
+          <p class="skill-list">Scikit-learn · TensorFlow · PyTorch<br>LangChain · AI Agents<br>Agentic AI · Gen-AI / LLMs</p>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">📊</div>
-          <p class="skill-card-title">Visualization</p>
-          <p class="skill-list">Power BI · Tableau<br>Amazon QuickSight · Streamlit<br>Matplotlib · Seaborn · Plotly<br>Pivot Tables</p>
+          <p class="skill-card-title">Visualization & Frontend</p>
+          <p class="skill-list">Power BI · Tableau<br>Amazon QuickSight · Streamlit<br>Matplotlib · Seaborn · Plotly<br>React-JSS · Pivot Tables</p>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">📐</div>
           <p class="skill-card-title">Statistics & Quality</p>
-          <p class="skill-list">SPC · Pareto · RCA · ANOVA<br>A/B Testing · Hypothesis Testing<br>Descriptive & Predictive Analytics<br>Six Sigma · MSA · 8D</p>
+          <p class="skill-list">SPC · Pareto · RCA · ANOVA<br>A/B Testing · Hypothesis Testing · DOE<br>Descriptive & Predictive Analytics<br>Six Sigma · MSA · 8D · Cp/Cpk</p>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">🔗</div>
-          <p class="skill-card-title">Supply Chain</p>
-          <p class="skill-list">Supplier Qualification · PPAP<br>Cp/Cpk · Control Plans<br>PCN Workflow · ERP (BUSY)<br>Inventory & Demand Planning<br>Discrete-Event Simulation</p>
+          <p class="skill-card-title">Supply Chain & Planning</p>
+          <p class="skill-list">Supply & Demand Planning<br>Demand Forecasting · Inventory Planning<br>Safety Stock · Reorder Point · BOM<br>Multi-Tier Supply Visibility<br>Gating Analysis · Capacity Planning<br>Supplier Qualification · PPAP · PCN</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🧮</div>
+          <p class="skill-card-title">Operations & Modeling</p>
+          <p class="skill-list">Scenario Modeling · Linear Programming<br>Monte-Carlo Simulation<br>Discrete-Event Simulation<br>Supplier Risk Analysis · Control Plans<br>Operational Reporting · SDLC · UAT</p>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">🛠️</div>
           <p class="skill-card-title">Tools & Platforms</p>
-          <p class="skill-list">GitHub · FlexSim · Minitab<br>Power Automate · MS Office<br>AutoCAD · CATIA · Arduino<br>Tesla WARP · BUSY ERP</p>
+          <p class="skill-list">Git · GitHub · FlexSim · Minitab<br>Power Automate · Power Query · MS Office<br>AutoCAD · CATIA · Arduino<br>Tesla WARP · BUSY ERP</p>
         </div>
       </div>
     </div>
@@ -479,58 +493,89 @@
       </div>
       <div class="projects-grid">
         <div class="project-card reveal" data-num="01">
-          <a href="https://github.com/sriteja-salike/Dynamic-Stock-Safety-Optimization" target="_blank" class="project-view-btn">View ↗</a>
-          <p class="project-badge">ML · Supply Chain · Optimization</p>
-          <h3 class="project-title">Dynamic Safety Stock Optimization</h3>
-          <p class="project-desc">Developed a safety stock prediction framework with Random Forest-predicted demand variability across 9,000+ SKUs, reducing stockouts and inventory holding costs by 35%. Engineered feature pipelines from Walmart M5 time series data incorporating rolling demand statistics, seasonality, and simulated lead times; conducted crossover point analysis to classify SKUs by dominant variability driver. Built an interactive Streamlit dashboard with a budget simulator for dynamic what-if analysis — adjusting budget constraints to visualize real-time impact on safety stock allocation and holding cost.</p>
+          <p class="project-badge">Hackathon · Agentic AI · Supply Chain</p>
+          <h3 class="project-title">ShareStack</h3>
+          <p class="project-desc">An agentic AI supply-resilience tool that helps food banks get ahead of supply shocks. AI agents read the operational context, explain their reasoning, and help planners compare responses — with a human in the loop for every decision.</p>
           <div class="project-stack">
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">Random Forest</span>
-            <span class="stack-pill">Linear Programming</span>
-            <span class="stack-pill">SciPy</span>
-            <span class="stack-pill">Scikit-learn</span>
-            <span class="stack-pill">Time Series</span>
+            <span class="stack-pill">AI Agents</span>
+            <span class="stack-pill">Agentic AI</span>
+            <span class="stack-pill">LLMs</span>
+            <span class="stack-pill">Human-in-the-Loop</span>
             <span class="stack-pill">Supply Chain</span>
           </div>
         </div>
         <div class="project-card reveal" data-num="02">
-          <a href="https://github.com/sriteja-salike/Customer-Behavior-Analytics" target="_blank" class="project-view-btn">View ↗</a>
-          <p class="project-badge">Data Engineering · Analytics</p>
-          <h3 class="project-title">Customer Shopping Behavior Analysis</h3>
-          <p class="project-desc">Built an ETL pipeline scraping 3,900 retail transactions using Python — performed EDA and feature engineering, then loaded data into PostgreSQL via SQLAlchemy. Segmented customers and analyzed discount dependency in SQL to surface revenue concentration among top spenders, product-level sales reliance on discounts, and subscriber vs. non-subscriber discount behavior. Delivered a Power BI dashboard surfacing key KPIs and a Gamma AI-powered stakeholder presentation.</p>
+          <a href="https://github.com/sriteja-salike/Supply_planning_control_tower" target="_blank" class="project-view-btn">View ↗</a>
+          <p class="project-badge">Data Engineering · Supply Planning</p>
+          <h3 class="project-title">Supply Planning Control Tower</h3>
+          <p class="project-desc">A supply planning platform with automated daily sales and inventory pipelines, giving real-time visibility into shortage risks and gating SKUs. Built-in supply-demand simulations help quantify days of supply and guide planning decisions.</p>
           <div class="project-stack">
-            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Airflow</span>
+            <span class="stack-pill">Docker</span>
             <span class="stack-pill">PostgreSQL</span>
-            <span class="stack-pill">SQLAlchemy</span>
-            <span class="stack-pill">Power BI</span>
-            <span class="stack-pill">EDA</span>
-            <span class="stack-pill">SQL</span>
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">FastAPI</span>
+            <span class="stack-pill">React-JSS</span>
           </div>
         </div>
         <div class="project-card reveal" data-num="03">
+          <a href="https://github.com/sriteja-salike/Dynamic-Safety-Stock-Optimization" target="_blank" class="project-view-btn">View ↗</a>
+          <p class="project-badge">ML · Supply Chain · Optimization</p>
+          <h3 class="project-title">Dynamic Safety Stock Optimization</h3>
+          <p class="project-desc">A machine learning approach to safety stock across 9,000+ SKUs, combining demand-variability prediction with lead-time simulation to cut stockouts and holding costs by 35%.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Random Forest</span>
+            <span class="stack-pill">Scikit-learn</span>
+            <span class="stack-pill">Time Series</span>
+            <span class="stack-pill">Streamlit</span>
+          </div>
+        </div>
+        <div class="project-card reveal" data-num="04">
+          <p class="project-badge">Simulation · Operations</p>
+          <h3 class="project-title">FedEx Hub Layout Optimization</h3>
+          <p class="project-desc">Simulation models of package flow through a major sort hub to find bottlenecks and test capacity under contingency scenarios — improving throughput by 20% and reducing rework by 12%.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Discrete-Event Simulation</span>
+            <span class="stack-pill">Scenario Modeling</span>
+            <span class="stack-pill">Capacity Planning</span>
+          </div>
+        </div>
+        <div class="project-card reveal" data-num="05">
+          <a href="https://github.com/sriteja-salike/Customer-Behavior-Analytics" target="_blank" class="project-view-btn">View ↗</a>
+          <p class="project-badge">Data Engineering · Analytics</p>
+          <h3 class="project-title">Customer Shopping Behavior Analysis</h3>
+          <p class="project-desc">An end-to-end pipeline and analysis of retail transactions, exploring customer segments and how much sales depend on discounts, wrapped up in a Power BI dashboard.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">SQL</span>
+            <span class="stack-pill">Power BI</span>
+          </div>
+        </div>
+        <div class="project-card reveal" data-num="06">
           <a href="https://github.com/sriteja-salike/Weather-Data-Pipeline" target="_blank" class="project-view-btn">View ↗</a>
           <p class="project-badge">Data Engineering · Automated Workflows</p>
           <h3 class="project-title">Automated Weather Data Pipeline</h3>
-          <p class="project-desc">Orchestrated a daily ETL workflow using Apache Airflow and Astro SDK to automate ingestion of meteorological data from the Open-Meteo API. Developed modular Python DAGs to parse JSON payloads and standardize data into structured SQL formats. Architected a containerized PostgreSQL warehouse via Docker Compose with idempotent SQL hooks preventing duplicate records.</p>
+          <p class="project-desc">A daily, containerized ETL workflow that pulls weather data from a public API into a PostgreSQL warehouse, orchestrated with Airflow.</p>
           <div class="project-stack">
             <span class="stack-pill">Airflow</span>
             <span class="stack-pill">Docker</span>
             <span class="stack-pill">PostgreSQL</span>
             <span class="stack-pill">Python</span>
             <span class="stack-pill">Astro SDK</span>
-            <span class="stack-pill">ETL</span>
           </div>
         </div>
-        <div class="project-card reveal" data-num="04">
+        <div class="project-card reveal" data-num="07">
           <a href="https://github.com/sriteja-salike/Netflix_Content_Analytics" target="_blank" class="project-view-btn">View ↗</a>
           <p class="project-badge">ETL Pipelines · Analytics · Dashboarding</p>
           <h3 class="project-title">Netflix Content Analytics</h3>
-          <p class="project-desc">Built an ELT pipeline extracting raw Netflix data with Python and loading it into SQL Server for structured transformation and analysis. Performed data cleaning including handling foreign encodings, removing duplicates, and standardizing categorical columns. Delivered an interactive Power BI dashboard visualizing movie vs. TV distribution, genre trends, and high production regions.</p>
+          <p class="project-desc">An ELT pipeline and Power BI dashboard exploring content mix, genre trends, and top production regions in Netflix data.</p>
           <div class="project-stack">
             <span class="stack-pill">Python</span>
-            <span class="stack-pill">ETL</span>
             <span class="stack-pill">SQL Server</span>
-            <span class="stack-pill">SQLAlchemy</span>
+            <span class="stack-pill">ETL</span>
             <span class="stack-pill">Power BI</span>
           </div>
         </div>
